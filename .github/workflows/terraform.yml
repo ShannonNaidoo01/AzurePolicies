@@ -29,7 +29,9 @@ jobs:
       working-directory: ./
 
     - name: Terraform Plan
-      run: terraform plan -out=tfplan
+      env:
+        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      run: terraform plan -var="subscription_id=${{ secrets.ARM_SUBSCRIPTION_ID }}" -out=tfplan
       working-directory: ./
 
     - name: Terraform Apply
