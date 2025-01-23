@@ -3,15 +3,15 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_management_group" "contributor" {
-  display_name = "contributor-management-group"
-  name         = "contributor-mg"
+resource "azurerm_management_group" "example" {
+  display_name = "example-management-group"
+  name         = "example-mg"
 }
 
-resource "azurerm_role_definition" "custom_contributor_without_vnet" {
-  name        = "Custom Contributor Without VNet"
-  scope       = azurerm_management_group.contributor.id
-  description = "Contributor role without the ability to create or modify virtual networks."
+resource "azurerm_role_definition" "custom_example_without_vnet" {
+  name        = "Custom example Without VNet"
+  scope       = azurerm_management_group.example.id
+  description = "example role without the ability to create or modify virtual networks."
 
   permissions {
     actions = [
@@ -26,6 +26,6 @@ resource "azurerm_role_definition" "custom_contributor_without_vnet" {
   }
 
   assignable_scopes = [
-    azurerm_management_group.contributor.id
+    azurerm_management_group.example.id
   ]
 }
